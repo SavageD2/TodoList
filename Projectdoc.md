@@ -65,3 +65,11 @@ Conclusion
 En suivant cette approche modulaire, nous avons créé une To-Do List simple et évolutive avec React et TypeScript. Le choix d'utiliser des composants séparés et de gérer les données dans un fichier à part nous permet de maintenir facilement l'application et d'intégrer de nouvelles fonctionnalités, comme une API ou un système de filtrage, lorsque nous serons prêts.
 
 La gestion de l'état avec useState nous permet de rendre l'application interactive. Enfin, en utilisant TypeScript, nous avons renforcé la qualité du code et amélioré l'autocomplétion et la sécurité des types tout au long du développement.
+
+État filter : Nous avons ajouté un nouvel état filter pour garder trace du type de filtrage sélectionné. Cela peut être 'all', 'completed', ou 'incomplete'.
+
+Composant Filter : Nous avons ajouté un composant Filter qui permet à l'utilisateur de choisir entre afficher toutes les tâches, uniquement celles terminées, ou uniquement celles non terminées.
+
+Filtrage des tâches : Dans App.tsx, nous avons créé une constante filteredTodos qui est calculée en fonction de l'état du filtre. Si le filtre est 'completed', seules les tâches complètes sont affichées. Si le filtre est 'incomplete', seules les tâches non complètes sont affichées. Si le filtre est 'all', toutes les tâches sont affichées.
+
+Interaction entre les composants : Le composant Filter reçoit filter et setFilter comme props. Lorsque l'utilisateur clique sur un bouton de filtre, le filtre est mis à jour, et les tâches affichées sont filtrées en conséquence dans TodoList.
