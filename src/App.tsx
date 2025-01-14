@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import TodoList from './components/TodoList';
-import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList/TodoList';
+import TodoForm from './components/TodoForm/TodoForm';
 //import { todos as initialTodos } from './data/todos';
-import Filter from './components/Filter';
+import Filter from './components/Filter/Filter';
+import './App.css';
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<{ id: number; text: string; completed: boolean }[]>([]);
