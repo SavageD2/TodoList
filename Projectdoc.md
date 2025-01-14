@@ -73,3 +73,7 @@ Composant Filter : Nous avons ajouté un composant Filter qui permet à l'utilis
 Filtrage des tâches : Dans App.tsx, nous avons créé une constante filteredTodos qui est calculée en fonction de l'état du filtre. Si le filtre est 'completed', seules les tâches complètes sont affichées. Si le filtre est 'incomplete', seules les tâches non complètes sont affichées. Si le filtre est 'all', toutes les tâches sont affichées.
 
 Interaction entre les composants : Le composant Filter reçoit filter et setFilter comme props. Lorsque l'utilisateur clique sur un bouton de filtre, le filtre est mis à jour, et les tâches affichées sont filtrées en conséquence dans TodoList.
+
+useEffect : Ce hook est utilisé pour exécuter la fonction fetchTodos lorsque l'application se charge pour la première fois. La fonction fetchTodos effectue une requête HTTP à http://localhost:5000/todos pour récupérer les tâches depuis l'API.
+fetch : Utilisé pour récupérer les données depuis l'API locale. Nous utilisons await response.json() pour convertir la réponse en JSON et la stocker dans l'état todos.
+L'API json-server : Nous utilisons JSON Server pour simuler une API. Il nous permet de gérer des ressources telles que /todos sans avoir à créer un véritable backend.

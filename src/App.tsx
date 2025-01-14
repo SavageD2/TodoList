@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
-import { todos as initialTodos } from './data/todos';
+//import { todos as initialTodos } from './data/todos';
 import Filter from './components/Filter';
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState(initialTodos);
+  const [todos, setTodos] = useState<{ id: number; text: string; completed: boolean }[]>([]);
   const [filter, setFilter] = useState('all');
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const response = await fetch('http://localhost:5000/todos');
+      const data = await response.json();
+      setTodos(data);
+    };
+    
+    fetchTodos();
+  }, []);
 
   const toggleComplete = (id: number) => {
     setTodos(todos.map((todo) =>
@@ -22,7 +32,7 @@ const App: React.FC = () => {
   const filteredTodos = todos.filter((todo) => {
     if (filter === 'completed') return todo.completed;
     if (filter === 'incomplete') return !todo.completed;
-    return true; // 'all'
+    return true;
   });
 
   return (
