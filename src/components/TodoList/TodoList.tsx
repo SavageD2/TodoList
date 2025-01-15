@@ -5,9 +5,10 @@ import './TodoList.css';
 type TodoListProps = {
   todos: { id: number; text: string; completed: boolean }[];
   toggleComplete: (id: number) => void;
+  deleteTodo: (id: number) => void;
 };
 
-const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, deleteTodo }) => {
   return (
     <div className="todo-list">
       {todos.map((todo) => (
@@ -17,6 +18,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete }) => {
           text={todo.text}
           completed={todo.completed}
           toggleComplete={toggleComplete}
+          deleteTodo={deleteTodo}
         />
       ))}
     </div>

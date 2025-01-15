@@ -25,6 +25,5 @@
   
   .todo-list .todo-item.completed {
     background-color: #4caf50;
-    text-decoration: line-through;
   }
   

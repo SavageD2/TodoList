@@ -11,11 +11,18 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const response = await fetch('http://localhost:5000/todos');
-      const data = await response.json();
-      setTodos(data);
+      try {
+        const response = await fetch('http://localhost:5000/todos');
+        if (!response.ok) {
+          throw new Error('Failed to fetch tasks');
+        }
+        const data = await response.json();
+        setTodos(data);
+      } catch (error) {
+        console.error('Error fetching todos:', error);
+      }
     };
-    
+  
     fetchTodos();
   }, []);
 
@@ -30,6 +37,12 @@ const App: React.FC = () => {
     setTodos([...todos, newTodo]);
   };
 
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+  
+  
+  
   const filteredTodos = todos.filter((todo) => {
     if (filter === 'completed') return todo.completed;
     if (filter === 'incomplete') return !todo.completed;
@@ -41,7 +54,8 @@ const App: React.FC = () => {
       <h1>To-Do List</h1>
       <TodoForm addTodo={addTodo} />
       <Filter filter={filter} setFilter={setFilter} />
-      <TodoList todos={filteredTodos} toggleComplete={toggleComplete} />
+      <TodoList todos={filteredTodos} toggleComplete={toggleComplete} deleteTodo={deleteTodo} />
+
       
     </div>
   );
