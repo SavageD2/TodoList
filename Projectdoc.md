@@ -77,3 +77,16 @@ Interaction entre les composants : Le composant Filter reçoit filter et setFilt
 useEffect : Ce hook est utilisé pour exécuter la fonction fetchTodos lorsque l'application se charge pour la première fois. La fonction fetchTodos effectue une requête HTTP à http://localhost:5000/todos pour récupérer les tâches depuis l'API.
 fetch : Utilisé pour récupérer les données depuis l'API locale. Nous utilisons await response.json() pour convertir la réponse en JSON et la stocker dans l'état todos.
 L'API json-server : Nous utilisons JSON Server pour simuler une API. Il nous permet de gérer des ressources telles que /todos sans avoir à créer un véritable backend.
+
+Utilisation de fetch pour les actions :
+
+# GET pour récupérer les tâches.
+# POST pour ajouter une tâche.
+# PATCH pour modifier le statut.
+# DELETE pour supprimer une tâche.
+Gestion des erreurs :
+
+Ajout de blocs try-catch pour éviter les crashs en cas d'erreur.
+État dynamique :
+
+Les actions de modification (toggleComplete, deleteTodo, addTodo) mettent à jour à la fois l'API et l'état local.

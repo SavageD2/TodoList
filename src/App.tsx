@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TodoList from './components/TodoList/TodoList';
 import TodoForm from './components/TodoForm/TodoForm';
-//import { todos as initialTodos } from './data/todos';
 import Filter from './components/Filter/Filter';
 import './App.css';
 
@@ -13,36 +12,72 @@ const App: React.FC = () => {
     const fetchTodos = async () => {
       try {
         const response = await fetch('http://localhost:5000/todos');
-        if (!response.ok) {
-          throw new Error('Failed to fetch tasks');
-        }
         const data = await response.json();
         setTodos(data);
       } catch (error) {
-        console.error('Error fetching todos:', error);
+        console.error('Erreur lors du chargement des tâches :', error);
       }
     };
-  
+
     fetchTodos();
   }, []);
 
-  const toggleComplete = (id: number) => {
-    setTodos(todos.map((todo) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    ));
+  const addTodo = async (text: string) => {
+    try {
+      const newTodo = { text, completed: false };
+      const response = await fetch('http://localhost:5000/todos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTodo),
+      });
+
+      if (response.ok) {
+        const createdTodo = await response.json();
+        setTodos([...todos, createdTodo]);
+      }
+    } catch (error) {
+      console.error('Erreur lors de l’ajout de la tâche :', error);
+    }
   };
 
-  const addTodo = (text: string) => {
-    const newTodo = { id: todos.length + 1, text, completed: false };
-    setTodos([...todos, newTodo]);
+  const toggleComplete = async (id: number) => {
+    try {
+      const todo = todos.find((t) => t.id === id);
+      if (!todo) return;
+
+      const updatedTodo = { ...todo, completed: !todo.completed };
+      const response = await fetch(`http://localhost:5000/todos/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ completed: updatedTodo.completed }),
+      });
+
+      if (response.ok) {
+        setTodos(todos.map((t) => (t.id === id ? updatedTodo : t)));
+      }
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour de la tâche :', error);
+    }
   };
 
-  const deleteTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+  const deleteTodo = async (id: number) => {
+    try {
+      const response = await fetch(`http://localhost:5000/todos/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setTodos(todos.filter((t) => t.id !== id));
+      }
+    } catch (error) {
+      console.error('Erreur lors de la suppression de la tâche :', error);
+    }
   };
-  
-  
-  
+
   const filteredTodos = todos.filter((todo) => {
     if (filter === 'completed') return todo.completed;
     if (filter === 'incomplete') return !todo.completed;
@@ -55,8 +90,6 @@ const App: React.FC = () => {
       <TodoForm addTodo={addTodo} />
       <Filter filter={filter} setFilter={setFilter} />
       <TodoList todos={filteredTodos} toggleComplete={toggleComplete} deleteTodo={deleteTodo} />
-
-      
     </div>
   );
 };
