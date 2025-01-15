@@ -1,0 +1,38 @@
+.todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .todo-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .todo-submit {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .todo-submit:hover {
+    background-color: #45a049;
+  }
+  
+  .todo-submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
