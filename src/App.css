@@ -31,3 +31,20 @@ div {
   max-width: 500px;
   margin-top: 20px;
 }
+
+.loader {
+  font-size: 1.5rem;
+  color: #646cff;
+  text-align: center;
+  margin: 2rem 0;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
