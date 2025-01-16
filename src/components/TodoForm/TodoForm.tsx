@@ -7,12 +7,15 @@ type TodoFormProps = {
 
 const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   const [text, setText] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (text.trim()) {
-      addTodo(text);
+      setIsSubmitting(true);
+      await addTodo(text);
       setText('');
+      setIsSubmitting(false);
     }
   };
 
@@ -23,9 +26,11 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Ajouter une tâche"
+        disabled={isSubmitting}
         className="todo-input"
       />
       <button type="submit" className="todo-submit">Ajouter</button>
+      {isSubmitting ? 'Ajout...' : 'Ajouter une tâche'}
     </form>
   );
 };
