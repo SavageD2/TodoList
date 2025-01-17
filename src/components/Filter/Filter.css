@@ -1,32 +1,37 @@
 .filter-container {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .filter-button {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-  }
-  
-  .filter-button:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .filter-button:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-  }
-  
-  .filter-button.active {
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  .filter-button.active:hover {
-    background-color: #45a049;
-  }
-  
+  display: flex;
+  gap: 10px;
+}
+
+.filter-button {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s ease-in-out, border-color 0.3s;
+}
+
+.filter-button:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.filter-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.filter-button.active {
+  background-color: #4caf50;
+  color: white;
+  transform: scale(1.05);
+}
+
+.filter-button.active:hover {
+  background-color: #45a049;
+}
+
+.filter-button:focus {
+  outline: none;
+}
