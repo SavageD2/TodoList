@@ -30,7 +30,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
         className="todo-input"
       />
       <button type="submit" className="todo-submit">Ajouter</button>
-      {isSubmitting ? 'Ajout...' : 'Ajouter une tâche'}
+      {isSubmitting ? (<span className='spinner'></span>) : ('Ajouter une tâche')}
     </form>
   );
 };

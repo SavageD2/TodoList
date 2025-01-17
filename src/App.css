@@ -12,7 +12,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 h1 {
@@ -20,6 +21,7 @@ h1 {
   margin-bottom: 20px;
   font-size: 2rem;
   color: #333;
+  font-weight: 600;
 }
 
 div {
@@ -30,6 +32,8 @@ div {
   width: 100%;
   max-width: 500px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .loader {
@@ -37,7 +41,7 @@ div {
   color: #646cff;
   text-align: center;
   margin: 2rem 0;
-  animation: pulse 1.5s infinite;
+  animation: pulse 1.5s infinite, scale 1.5s infinite;
 }
 
 @keyframes pulse {
@@ -46,5 +50,14 @@ div {
   }
   50% {
     opacity: 0.5;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
   }
 }

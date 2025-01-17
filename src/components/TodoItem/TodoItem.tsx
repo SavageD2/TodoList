@@ -17,9 +17,13 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, text, completed, toggleComplete
     className={`todo-text ${completed ? 'completed-text' : ''}`}
   >
     {text}
-    {completed && <i className="fa fa-check completed-icon"></i>} {/* Afficher l'icône si complétée */}
+    {completed && <i className="fa fa-check completed-icon"></i>}
   </span>
-  <button onClick={() => deleteTodo(id)} className="delete-button">Supprimer</button>
+  <button
+  onClick={() => deleteTodo(id)}
+  className="delete-button"
+  aria-label={`Supprimer la tâche "${text}"`}>Supprimer</button>
+
 </div>
   );
 };

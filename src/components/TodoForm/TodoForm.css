@@ -1,38 +1,62 @@
 .todo-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .todo-input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  .todo-submit {
-    padding: 10px;
-    font-size: 16px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .todo-submit:hover {
-    background-color: #45a049;
-  }
-  
-  .todo-submit:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.todo-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 600px;
+  transition: border-color 0.3s ease;
+}
+
+.todo-input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.todo-submit {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.todo-submit:hover {
+  background-color: #45a049;
+}
+
+.todo-submit:active {
+  transform: scale(0.98);
+}
+
+.todo-submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.todo-form .spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
